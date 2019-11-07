@@ -1,18 +1,42 @@
 var gradeBook = {
     _grades: [],
-    _total: 0,
+    
+
     addGrade: function(newGrade){
         this._grades.push(newGrade);
     },
+
     getCountOfGrades: function(){
         return this._grades.length;
     },
+
     getAverage: function(){
+        var total = 0
         for (var grade=0; grade < this._grades.length; grade++){
-            this._total += this._grades[grade]
+            total += this._grades[grade]
         }
-        return this._total/(this._grades.length)
+        return total/(this._grades.length)
     },
+
+    getLetterGrade: function(){
+        for (var grade=0; grade < this._grades.length; grade++){
+            var avg = this.getAverage();
+            if (avg > 90){
+                return 'A';
+            } else if (avg>80){
+                return 'B';
+            } else if (avg>70){
+                return 'C'; 
+            } else if (avg>60){
+                return 'D'; 
+            } else if (avg>50){
+                return 'E'; 
+            } else {
+                return 'F'
+            }
+        }
+    },
+
     reset: function() {
         this._grades = [];
     }
